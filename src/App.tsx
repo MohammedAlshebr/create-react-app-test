@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
 
-function App() {
+import './App.css';
+import ObjectsList from "./ObjectsList/ObjectsList";
+import LoginForm from "./LoginForm/LoginForm";
+
+type TAB = {
+  id: number
+  title: string
+}
+
+const tabs: TAB[] = [{id: 1, title: "Seite 1"}, {id: 2, title: "Seite 2"}]
+
+const App = () => {
+
+  const [activeTab, setActiveTab] = useState(tabs[0].id)
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {tabs.map(tab => {
+        return <a key={tab.id} href={"#" + tab.title} className={"tab"} onClick={() => {
+          setActiveTab(tab.id)
+        }}>{tab.title}</a>
+      })}
+
+      {activeTab === 1 && <ObjectsList/>}
+      {activeTab === 2 && <LoginForm/>}
+
     </div>
   );
 }
