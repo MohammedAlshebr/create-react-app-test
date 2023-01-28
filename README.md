@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-##Run Local Server
+## Run Local Server
 
 To test please run in another terminal window first:
 
